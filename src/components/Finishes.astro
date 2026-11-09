@@ -1,0 +1,144 @@
+---
+// Attention to detail. The drawings are hand-authored illustrations of finishes
+// JT Electrical has described in its captions. They show no real installation.
+import Photo from "./Photo.astro";
+import { images } from "../data/images";
+const panelLines = Array.from({ length: 11 }, (_, i) => 40 + i * 56);
+const tags = [
+  { y: 92, from: "M0 40C110 34 120 92 250 92", n: "1" },
+  { y: 164, from: "M0 190C110 200 130 164 250 164", n: "2" },
+  { y: 236, from: "M0 118C120 130 110 236 250 236", n: "3" },
+  { y: 308, from: "M0 340C120 330 130 308 250 308", n: "4" },
+];
+---
+<section class="band" data-tone="warm" id="finishes" aria-labelledby="finishes-title">
+  <span class="node" data-line-node="left" aria-hidden="true"></span>
+  <div class="wrap">
+    <div class="fin__head">
+      <h2 id="finishes-title" class="title" data-r>The finish is all in the details.</h2>
+      <p class="lede soft" data-r style="--d:80ms">No messy cables, no unnecessary clutter. Just a clean finish, whether it's a bedroom or a basement plant room.</p>
+    </div>
+
+    <figure class="match" data-r="clip">
+      <svg class="match__art" viewBox="0 0 1200 620" preserveAspectRatio="xMinYMid slice" role="img" aria-label="Illustration of a brushed gold light switch and a matching double socket on a dark wall, beneath two spotlights with brushed gold halos.">
+        <defs>
+          <filter id="brush" x="0" y="0" width="100%" height="100%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.9 0.012" numOctaves="2" seed="4" />
+            <feColorMatrix values="0 0 0 0 1  0 0 0 0 .95  0 0 0 0 .8  .35 0 0 0 -.06" />
+            <feComposite in2="SourceGraphic" operator="in" />
+            <feMerge><feMergeNode in="SourceGraphic" /><feMergeNode /></feMerge>
+          </filter>
+          <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#e4c37b" /><stop offset=".46" stop-color="#b08a41" /><stop offset=".74" stop-color="#dcb86c" /><stop offset="1" stop-color="#a9833a" />
+          </linearGradient>
+          <linearGradient id="beam" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#ffe2a8" stop-opacity=".34" /><stop offset="1" stop-color="#ffe2a8" stop-opacity="0" />
+          </linearGradient>
+          <radialGradient id="pool"><stop offset="0" stop-color="#ffe2a8" stop-opacity=".3" /><stop offset="1" stop-color="#ffe2a8" stop-opacity="0" /></radialGradient>
+        </defs>
+        <rect width="1200" height="620" fill="#232427" />
+        <rect width="1200" height="58" fill="#2e3033" />
+        <path class="beam" d="M180 58h96l150 562H30z" fill="url(#beam)" />
+        <path class="beam" d="M560 58h96l150 562H410z" fill="url(#beam)" />
+        <ellipse class="beam" cx="228" cy="430" rx="250" ry="190" fill="url(#pool)" />
+        <ellipse class="beam" cx="608" cy="430" rx="250" ry="190" fill="url(#pool)" />
+        <g filter="url(#brush)">
+          <ellipse cx="228" cy="58" rx="58" ry="11" fill="url(#gold)" />
+          <ellipse cx="608" cy="58" rx="58" ry="11" fill="url(#gold)" />
+          <rect x="120" y="340" width="176" height="176" rx="8" fill="url(#gold)" />
+          <rect x="350" y="340" width="356" height="176" rx="8" fill="url(#gold)" />
+        </g>
+        <ellipse cx="228" cy="60" rx="38" ry="6" fill="#fff0cf" />
+        <ellipse cx="608" cy="60" rx="38" ry="6" fill="#fff0cf" />
+        <g stroke="#6e5220" stroke-opacity=".55" fill="none"><circle cx="146" cy="428" r="6" /><circle cx="270" cy="428" r="6" /><circle cx="528" cy="362" r="6" /><circle cx="528" cy="494" r="6" /></g>
+        <rect x="178" y="372" width="60" height="112" rx="4" fill="#caa35a" stroke="#6e5220" stroke-opacity=".5" />
+        <path d="M178 428h60" stroke="#6e5220" stroke-opacity=".5" />
+        <g fill="#191a1c">
+          <rect x="376" y="374" width="124" height="108" rx="4" /><rect x="556" y="374" width="124" height="108" rx="4" />
+        </g>
+        <g fill="#caa35a"><rect x="388" y="386" width="20" height="34" rx="2" /><rect x="568" y="386" width="20" height="34" rx="2" /></g>
+        <g fill="#54565a"><rect x="440" y="388" width="10" height="26" /><rect x="418" y="440" width="26" height="10" /><rect x="456" y="440" width="26" height="10" /><rect x="620" y="388" width="10" height="26" /><rect x="598" y="440" width="26" height="10" /><rect x="636" y="440" width="26" height="10" /></g>
+      </svg>
+      <figcaption class="match__text">
+        <h3 class="sub">Finishes that match</h3>
+        <p>Brushed gold spotlight halos chosen to complement a new light switch, with double sockets to match, so the whole room ties together.</p>
+        <span class="small match__note">Illustration</span>
+      </figcaption>
+    </figure>
+
+    <div class="pair">
+      <Photo class="pair__photo" image={images.stair} ratio="4 / 5" sizes="(max-width: 860px) 100vw, 40vw" />
+      <div class="pair__body">
+        <figure class="tv" data-draw>
+          <svg viewBox="0 0 640 400" role="img" aria-label="Illustration of a wall-mounted TV on panelling, with a cable route hidden behind the panels running down to a socket.">
+            <g stroke="#1c1d1f" stroke-opacity=".2">{panelLines.map((x) => <path d={`M${x} 16V384`} />)}</g>
+            <rect x="162" y="62" width="316" height="182" rx="4" fill="#1c1d1f" />
+            <path class="d" pathLength="1" d="M320 244V320a24 24 0 0 0 24 24H506" fill="none" stroke="#b88600" stroke-width="3" />
+            <circle cx="320" cy="244" r="6" fill="#b88600" />
+            <rect x="506" y="318" width="52" height="52" rx="3" fill="#f5f1e8" stroke="#1c1d1f" stroke-width="2" />
+            <path d="M532 330v10M522 354h9M534 354h9" stroke="#1c1d1f" stroke-width="2" />
+          </svg>
+          <figcaption class="small soft">Illustration</figcaption>
+        </figure>
+        <h3 class="sub" data-r>No visible cables</h3>
+        <p class="measure soft" data-r>TV cable runs concealed behind wall panelling, or kept neat and discreet with trunking, for a clutter-free finish.</p>
+      </div>
+    </div>
+
+    <div class="ident">
+      <figure class="ident__art" data-draw data-r="clip">
+        <svg viewBox="0 0 760 400" role="img" aria-label="Illustration of four cables arriving from different directions, each tagged with a number and connected in order to a control panel.">
+          <rect width="760" height="400" fill="#1c1d1f" />
+          <rect x="520" y="36" width="192" height="328" rx="4" fill="#2a2c2f" stroke="#f5f1e8" stroke-opacity=".3" />
+          <g fill="none" stroke="#f5f1e8" stroke-opacity=".75" stroke-width="2.5">
+            {tags.map((t, i) => <path class="d" pathLength="1" style={`--d:${120 + i * 140}ms`} d={`${t.from}H520`} />)}
+          </g>
+          {tags.map((t) => (
+            <g>
+              <rect x="350" y={t.y - 17} width="52" height="34" rx="3" fill="#f6c400" />
+              <text x="376" y={t.y + 7} text-anchor="middle" fill="#1c1d1f" font-size="21" font-weight="680">{t.n}</text>
+              <rect x="520" y={t.y - 10} width="40" height="20" fill="#f5f1e8" fill-opacity=".85" />
+              <circle cx="660" cy={t.y} r="9" fill="#f6c400" />
+            </g>
+          ))}
+        </svg>
+        <figcaption class="small ident__cap">Illustration</figcaption>
+      </figure>
+      <div class="ident__body">
+        <h3 class="sub" data-r>Identified, labelled, tested</h3>
+        <p class="measure soft" data-r>Replacing four leak detection panels in the basement of a bank meant belling out every existing cable, re-marking each one to the correct unit, then testing it all. One clean, organised panel at the end of it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .fin__head { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(1rem, 5vw, 5rem); align-items: end; margin-bottom: clamp(2.5rem, 6vw, 5.5rem); }
+
+  .match { position: relative; aspect-ratio: 1200 / 620; background: #232427; color: var(--on-char); overflow: hidden; }
+  .match__art { width: 100%; height: 100%; }
+  .beam { opacity: 1; transition: opacity 1600ms ease 500ms; }
+  :global(html.reveal-armed) .match:not(.in) .beam { opacity: 0; }
+  .match__text { position: absolute; top: 50%; right: clamp(1.75rem, 5vw, 5rem); width: min(25rem, 33%); transform: translateY(-50%); display: grid; gap: 0.85rem; }
+  .match__text p { color: var(--on-char-soft); }
+  .match__note { color: var(--on-char-soft); }
+
+  .pair { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(2rem, 6vw, 6.5rem); align-items: center; margin-top: clamp(4rem, 9vw, 8rem); }
+  .pair__body { display: grid; gap: 0.75rem; }
+  .tv { margin-bottom: 1.25rem; display: grid; gap: 0.5rem; }
+  .tv svg { width: 100%; height: auto; }
+
+  .ident { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(2rem, 6vw, 6.5rem); align-items: end; margin-top: clamp(4rem, 9vw, 8rem); }
+  .ident__art { position: relative; background: var(--char); }
+  .ident__art svg { width: 100%; height: auto; }
+  .ident__cap { padding: 0 0.9rem 0.6rem; color: var(--on-char-soft); }
+  .ident__body { display: grid; gap: 0.75rem; }
+
+  @media (max-width: 860px) {
+    .fin__head, .pair, .ident { grid-template-columns: 1fr; }
+    .match { aspect-ratio: auto; }
+    .match__art { height: auto; aspect-ratio: 4 / 3; display: block; }
+    .match__text { position: static; width: auto; transform: none; padding: 1.5rem 1.5rem 1.6rem; }
+    .pair__body { order: -1; }
+  }
+</style>

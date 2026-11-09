@@ -1,0 +1,30 @@
+---
+// Always visible and never dismissible, so the concept can't be mistaken for a
+// live site approved by the business. Deliberately quiet next to the brand.
+import { asset, brand, stapled } from "../data/site";
+---
+<div class="bar">
+  <p class="bar__note"><a href={stapled.url}>Stapled.</a> website concept<span class="bar__wide"> for {brand.name}, not yet approved by the business. Images are samples.</span></p>
+  <a href={asset("/concept/")} class="bar__link">About this concept</a>
+</div>
+
+<style>
+  .bar {
+    position: relative;
+    z-index: 61;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    height: var(--bar-h);
+    padding-inline: var(--gutter);
+    background: var(--char-deep);
+    color: var(--on-char-soft);
+    font-size: 0.8125rem;
+    font-variation-settings: "wdth" 88;
+    white-space: nowrap;
+  }
+  .bar a { display: inline-flex; align-items: center; min-height: var(--bar-h); text-underline-offset: 0.2em; }
+  .bar__note a { color: var(--on-char); font-weight: 650; text-decoration: none; }
+  @media (max-width: 860px) { .bar__wide { display: none; } }
+</style>

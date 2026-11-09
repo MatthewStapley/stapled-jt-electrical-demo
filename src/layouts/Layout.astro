@@ -1,0 +1,44 @@
+---
+import "@fontsource-variable/archivo/wdth.css";
+import "@fontsource-variable/archivo/wdth-italic.css";
+import "@fontsource-variable/saira/wdth-italic.css";
+import sairaUrl from "@fontsource-variable/saira/files/saira-latin-wdth-italic.woff2?url";
+import "../styles/global.css";
+import DemoBar from "../components/DemoBar.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { asset, brand } from "../data/site";
+
+interface Props {
+  title: string;
+  description: string;
+  preload?: { href: string; media?: string }[];
+}
+const { title, description, preload = [] } = Astro.props;
+---
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title} | {brand.name} concept by Stapled.</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="noindex" />
+    <meta name="theme-color" content="#18191b" />
+    <link rel="icon" href={asset(brand.logo)} type="image/jpeg" />
+    <link rel="preload" as="font" type="font/woff2" href={sairaUrl} crossorigin />
+    {preload.map((p) => <link rel="preload" as="image" href={p.href} media={p.media} />)}
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <DemoBar />
+    <Header />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+    <script>
+      import "../scripts/chrome";
+    </script>
+  </body>
+</html>

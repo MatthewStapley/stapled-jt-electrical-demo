@@ -1,0 +1,283 @@
+---
+// Three groups, each drawn in the same line style inside a cropped badge ring.
+// Hovering, focusing or selecting a service lights its part of the drawing and
+// runs power down the trunk to it. All of it is a link to the enquiry form.
+import { groups } from "../data/services";
+const [lighting, connectivity, commercial] = groups;
+const spots = [212, 330, 448];
+const arrow = '<path d="M4 12h15M13 6l6 6-6 6"/>';
+---
+<section class="svc" data-tone="dark" id="services" aria-labelledby="services-title">
+  <div class="wrap">
+    <header class="top">
+      <p class="tag" data-r>Services</p>
+      <h2 id="services-title" class="shout top__h" data-r>Not just <em>spotlights.</em></h2>
+      <p class="top__p" data-r style="--d:80ms">From a kitchen full of downlights to a commercial control panel. Pick a service and we'll start your enquiry with it selected.</p>
+    </header>
+
+    <article class="g g--a" data-group>
+      <figure class="art art--a" data-draw aria-hidden="true">
+        <svg class="dg" viewBox="0 0 760 590">
+          <circle class="ring" cx="384" cy="306" r="284" />
+          <path class="sweep" d="M384 22a284 284 0 0 0 0 568a285.4 285.4 0 0 1 0-568z" />
+          <path class="d" pathLength="1" d="M128 118H664" />
+          <path class="d" pathLength="1" style="--d:220ms" d="M128 500H664M612 118V500" />
+          <g data-part="spots">
+            {spots.map((x) => (
+              <g>
+                <path class="cone" d={`M${x - 22} 132L${x - 86} 324H${x + 86}L${x + 22} 132z`} />
+                <path class="hot" d={`M${x - 28} 118v8a28 13 0 0 0 56 0v-8`} />
+              </g>
+            ))}
+          </g>
+          <g data-part="led">
+            <path d="M166 344H500V362H166z" />
+            <path class="hot wide" d="M176 372H490" />
+            <path d="M176 382H490V500H176zM333 382V500" />
+          </g>
+          <g data-part="cable">
+            <path d="M174 184H292V256H174z" />
+            <path class="hot" stroke-dasharray="3 9" d="M233 256V304H384" />
+          </g>
+          <g data-part="sockets">
+            <rect x="384" y="272" width="62" height="58" rx="3" />
+            <path d="M415 283V294M403 316H412M418 316H427" />
+            <rect x="462" y="272" width="42" height="58" rx="3" />
+            <path d="M483 283V319" />
+          </g>
+          <g data-part="outdoor">
+            <path d="M612 172H636" />
+            <path class="hot" d="M636 158H678L690 204H636z" />
+            <path d="M704 212a26 26 0 0 1 8 22M722 200a46 46 0 0 1 13 40" />
+          </g>
+        </svg>
+      </figure>
+      <div class="g__body">
+        <h3 class="shout g__h">{lighting.title}</h3>
+        <p class="g__voice">{lighting.voice}</p>
+        <ul class="rows" data-rows>
+          {lighting.services.map((s) => (
+            <li>
+              <a class="row" href="#enquire" data-service={s.name} data-part={s.part}>
+                <span class="row__name">{s.name}</span>
+                <span class="row__text">{s.summary}</span>
+                <span class="row__on">Selected</span>
+                <svg class="row__go" viewBox="0 0 24 24" aria-hidden="true" set:html={arrow}></svg>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </article>
+  </div>
+
+  <div class="duo">
+    <article class="g g--b" data-group>
+      <figure class="art art--b" data-draw aria-hidden="true">
+        <svg class="dg" viewBox="0 0 560 330">
+          <circle class="ring" cx="270" cy="250" r="236" />
+          <path class="d" pathLength="1" d="M36 168L286 76L520 162" />
+          <path class="d" pathLength="1" style="--d:220ms" d="M72 232H486" />
+          <g data-part="starlink">
+            <path class="hot" d="M134 66L222 34L238 78L150 110z" />
+            <path d="M188 92L196 124" />
+            <path class="hot" stroke-dasharray="3 9" d="M196 124V232" />
+          </g>
+          <g data-part="speaker">
+            <circle cx="366" cy="232" r="9" class="hot" />
+            <path class="hot" d="M340 248a36 36 0 0 0 52 0" />
+            <path d="M322 262a62 62 0 0 0 88 0M304 276a88 88 0 0 0 124 0" />
+          </g>
+        </svg>
+      </figure>
+      <h3 class="shout g__h">{connectivity.title}</h3>
+      <p class="g__voice">{connectivity.voice}</p>
+      <ul class="rows" data-rows>
+        {connectivity.services.map((s) => (
+          <li>
+            <a class="row" href="#enquire" data-service={s.name} data-part={s.part}>
+              <span class="row__name">{s.name}</span>
+              <span class="row__text">{s.summary}</span>
+              <span class="row__on">Selected</span>
+              <svg class="row__go" viewBox="0 0 24 24" aria-hidden="true" set:html={arrow}></svg>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </article>
+
+    <article class="g g--c on-volt" data-group>
+      <figure class="art art--c" data-draw aria-hidden="true">
+        <svg class="dg" viewBox="0 0 640 320">
+          <circle class="ring" cx="470" cy="160" r="214" />
+          <g data-part="panel">
+            {[34, 104, 174, 244].map((y, i) => (
+              <g>
+                <rect x="24" y={y} width="62" height="42" rx="2" />
+                <path class="d" pathLength="1" style={`--d:${140 + i * 120}ms`} d={`M86 ${y + 21}H${250 - i * 22}V${116 + i * 30}H384`} />
+                <circle class="dot" cx="384" cy={116 + i * 30} r="6" />
+              </g>
+            ))}
+            <rect class="thick" x="384" y="58" width="190" height="204" rx="3" />
+            <circle class="thick" cx="510" cy="112" r="20" />
+            <path d="M424 208H534" />
+          </g>
+        </svg>
+      </figure>
+      <h3 class="shout g__h">{commercial.title}</h3>
+      <p class="g__voice">{commercial.voice}</p>
+      <ul class="rows" data-rows>
+        {commercial.services.map((s) => (
+          <li>
+            <a class="row" href="#enquire" data-service={s.name} data-part={s.part}>
+              <span class="row__name">{s.name}</span>
+              <span class="row__text">{s.summary}</span>
+              <span class="row__on">Selected</span>
+              <svg class="row__go" viewBox="0 0 24 24" aria-hidden="true" set:html={arrow}></svg>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </article>
+  </div>
+</section>
+
+<style>
+  .svc { position: relative; background: var(--char); color: var(--on-char); padding-top: var(--section); overflow: clip; }
+
+  .top { display: grid; grid-template-columns: minmax(0, 8fr) minmax(0, 4fr); column-gap: clamp(2rem, 5vw, 5rem); row-gap: 1rem; align-items: end; margin-bottom: clamp(3rem, 6vw, 6rem); }
+  .top .tag { grid-column: 1 / -1; }
+  .top__h { font-size: clamp(2.9rem, 7.5vw, 7.5rem); }
+  .top__h em { font-style: inherit; color: var(--volt); display: block; }
+  .top__p { color: var(--on-char-soft); font-size: clamp(1.0625rem, 1.4vw, 1.25rem); line-height: 1.45; }
+
+  /* Groups */
+  .g { position: relative; }
+  .g--a { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(2rem, 5vw, 5rem); align-items: center; padding-bottom: clamp(4rem, 8vw, 7.5rem); }
+  .g__h { font-size: clamp(1.9rem, 3.3vw, 3.25rem); font-weight: 800; font-variation-settings: "wdth" 118; line-height: 0.98; text-wrap: balance; }
+  .g__voice { margin-top: 0.6rem; font-family: var(--display); font-style: italic; font-weight: 600; font-variation-settings: "wdth" 100; font-size: clamp(1.05rem, 1.35vw, 1.25rem); color: var(--volt); }
+  .on-volt .g__voice { color: var(--char); }
+
+  /* Line drawings: one stroke, one accent, a cropped ring behind each. */
+  .art { --accent: var(--volt); --line: var(--on-char); }
+  .on-volt .art { --accent: var(--char); --line: var(--char); }
+  .art--a { margin-left: calc(var(--gutter) * -0.6); }
+  .dg { width: 100%; height: auto; fill: none; stroke: var(--line); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+  .art--a .dg { overflow: visible; }
+  .ring { stroke: var(--accent); stroke-width: 2; opacity: 0.55; }
+  .sweep { fill: var(--accent); stroke: none; }
+  .hot { stroke: var(--accent); }
+  .wide { stroke-width: 6; }
+  .thick { stroke-width: 5; }
+  .dot { fill: var(--line); stroke: none; }
+  .cone { fill: var(--accent); stroke: none; opacity: 0.13; transition: opacity 320ms ease; }
+  [data-part] { transition: opacity 320ms ease, stroke 320ms ease; }
+  :global(.has-active) .dg [data-part]:not(.on) { opacity: 0.32; }
+  .dg [data-part].on { stroke: var(--accent); }
+  .dg [data-part].on .cone { opacity: 0.42; }
+  .on-volt .dg [data-part="panel"].on { stroke-width: 4; }
+
+  /* The trunk runs from each group's heading down to its services. */
+  .rows { position: relative; margin-top: clamp(1.25rem, 2.2vw, 2rem); padding-left: 2.6rem; --live: 0; }
+  .rows::before, .rows::after { content: ""; position: absolute; left: 0.3rem; top: 0; width: 2px; }
+  .rows::before { bottom: var(--trunk-end, 1.65rem); background: var(--rule-char); }
+  .rows::after { bottom: 0; background: var(--volt); transform: scaleY(var(--live)); transform-origin: top; transition: transform 460ms var(--ease); }
+  .on-volt .rows::before { background: rgb(24 25 27 / 0.3); }
+  .on-volt .rows::after { background: var(--char); }
+
+  .row {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: 1rem;
+    padding-block: 0.8rem;
+    color: inherit;
+    text-decoration: none;
+    --node: var(--char);
+    --node-line: var(--on-char-soft);
+  }
+  .on-volt .row { --node: var(--volt); --node-line: var(--char); }
+  .row::before { content: ""; position: absolute; left: -2.3rem; top: 1.65rem; width: 1.1rem; height: 2px; background: var(--node-line); opacity: 0.55; }
+  .row::after {
+    content: ""; position: absolute; left: -1.25rem; top: 1.22rem; width: 0.95rem; height: 0.95rem;
+    border: 2px solid var(--node-line); border-radius: 50%; background: var(--node);
+    transition: background-color 220ms ease, border-color 220ms ease, transform 300ms var(--ease);
+  }
+  .row__name { grid-column: 1; font-family: var(--display); font-style: italic; font-weight: 720; font-variation-settings: "wdth" 108; font-size: clamp(1.2rem, 1.65vw, 1.5rem); line-height: 1.12; transition: transform 460ms var(--ease), color 220ms ease; }
+  .row__text { grid-column: 1; margin-top: 0.15rem; color: var(--on-char-soft); font-size: 1rem; line-height: 1.4; }
+  .on-volt .row__text { color: #2b2a20; }
+  .row__go { grid-column: 2; grid-row: 1 / span 2; align-self: center; width: 1.5rem; height: 1.5rem; fill: none; stroke: var(--volt); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; opacity: 0; transform: translateX(-8px); transition: opacity 240ms ease, transform 460ms var(--ease); }
+  .on-volt .row__go { stroke: var(--char); }
+  .row__on { display: none; grid-column: 1; justify-self: start; margin-top: 0.4rem; padding: 0.1rem 0.8rem; background: var(--volt); color: var(--char); font-family: var(--display); font-style: italic; font-weight: 750; font-size: 0.875rem; clip-path: polygon(0.3rem 0, 100% 0, calc(100% - 0.3rem) 100%, 0 100%); }
+  .on-volt .row__on { background: var(--char); color: var(--volt); }
+
+  .row.is-active::after, .row:focus-visible::after, .row[aria-current="true"]::after { background: var(--volt); border-color: var(--volt); transform: scale(1.15); }
+  .on-volt .row.is-active::after, .on-volt .row:focus-visible::after, .on-volt .row[aria-current="true"]::after { background: var(--char); border-color: var(--char); }
+  .row.is-active .row__name, .row:focus-visible .row__name { transform: translateX(6px); }
+  .row.is-active .row__go, .row:focus-visible .row__go { opacity: 1; transform: none; }
+  .row[aria-current="true"] .row__on { display: inline-block; }
+  .row:focus-visible { outline-offset: -1px; }
+
+  /* The last two groups share one 20 degree boundary, leaning like the J and T. */
+  .duo {
+    display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); position: relative;
+    max-width: none;
+    padding-left: max(var(--gutter), calc((100vw - 92rem) / 2 + var(--gutter)));
+    padding-right: max(var(--gutter), calc((100vw - 92rem) / 2 + var(--gutter)));
+  }
+  .g--b { padding-block: 0 clamp(4rem, 7vw, 6.5rem); padding-right: clamp(1rem, 3vw, 3rem); }
+  .g--c { color: var(--char); padding: clamp(2.5rem, 5vw, 4.5rem) 0 clamp(4rem, 7vw, 6.5rem) clamp(10rem, 19vw, 19rem); z-index: 0; }
+  .g--c::before { content: ""; position: absolute; z-index: -1; inset: 0 -100vw 0 0; background: var(--volt); transform: skewX(var(--slant)); transform-origin: 0 100%; }
+  .art--b { max-width: 28rem; margin-bottom: 1.5rem; }
+  .art--c { max-width: 31rem; margin-bottom: 1.5rem; }
+
+  @media (hover: none) { .row__go { display: none; } }
+
+  @media (max-width: 1040px) {
+    .g--a { grid-template-columns: 1fr; }
+    .art--a { max-width: 36rem; margin-inline: auto; }
+    .duo { grid-template-columns: 1fr; padding-inline: 0; }
+    .g--b { padding-inline: var(--gutter); }
+    .g--c { padding: clamp(4.5rem, 12vw, 7rem) var(--gutter) clamp(3.5rem, 9vw, 5rem); }
+    .g--c::before { inset: 0; transform: none; clip-path: polygon(0 clamp(1.5rem, 7vw, 3.5rem), 100% 0, 100% 100%, 0 100%); }
+  }
+  @media (max-width: 760px) {
+    .top { grid-template-columns: 1fr; }
+    .top__h { font-size: clamp(2.2rem, 12.2vw, 5.5rem); }
+    .art--b, .art--c { max-width: 22rem; }
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>("[data-group]").forEach((group) => {
+    const rows = [...group.querySelectorAll<HTMLElement>(".row")];
+    const list = group.querySelector<HTMLElement>("[data-rows]");
+    const parts = [...group.querySelectorAll<SVGElement>(".dg [data-part]")];
+    if (!list) return;
+
+    // The trunk stops at the last branch, whatever the row heights are.
+    const fitTrunk = () => {
+      const last = rows[rows.length - 1];
+      if (last) list.style.setProperty("--trunk-end", `${list.offsetHeight - last.offsetTop - 27}px`);
+    };
+    fitTrunk();
+    new ResizeObserver(fitTrunk).observe(list);
+
+    const light = (row: HTMLElement | null) => {
+      rows.forEach((r) => r.classList.toggle("is-active", r === row));
+      const target = row ?? rows.find((r) => r.getAttribute("aria-current") === "true") ?? null;
+      group.classList.toggle("has-active", !!target);
+      parts.forEach((p) => p.classList.toggle("on", p.dataset.part === target?.dataset.part));
+      list.style.setProperty("--live", target ? String((target.offsetTop + 27) / list.offsetHeight) : "0");
+    };
+
+    rows.forEach((row) => {
+      row.addEventListener("pointerenter", (e) => { if ((e as PointerEvent).pointerType === "mouse") light(row); });
+      row.addEventListener("pointerleave", () => light(null));
+      row.addEventListener("focus", () => { if (row.matches(":focus-visible")) light(row); });
+      row.addEventListener("blur", () => light(null));
+    });
+
+    addEventListener("jt:service", () => light(null));
+  });
+</script>

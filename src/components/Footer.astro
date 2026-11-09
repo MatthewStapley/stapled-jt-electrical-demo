@@ -1,0 +1,30 @@
+---
+import { asset, brand, nav, stapled } from "../data/site";
+const home = asset("/");
+---
+<footer class="foot">
+  <div class="foot__top">
+    <div class="foot__brand">
+      <img src={asset(brand.logo)} alt="" width="56" height="56" loading="lazy" />
+      <p>{brand.line}</p>
+    </div>
+    <nav aria-label="Footer">
+      <ul>
+        {nav.map((n) => <li><a href={`${home}#${n.id}`}>{n.label}</a></li>)}
+        <li><a href={`${home}#enquire`}>Enquire</a></li>
+        <li><a href={brand.instagram} target="_blank" rel="noopener">Instagram</a></li>
+      </ul>
+    </nav>
+  </div>
+  <p class="foot__legal">Domestic and commercial electrical work in {brand.area}. This is a website concept by <a href={stapled.url}>Stapled.</a> {brand.name} has not yet reviewed or approved it. Photographs and the kitchen visualisation are samples and do not show work by {brand.name}. <a href={asset("/concept/")}>About this concept</a>.</p>
+</footer>
+
+<style>
+  .foot { position: relative; z-index: 2; background: var(--char-deep); color: var(--on-char); padding: clamp(2.5rem, 5vw, 4rem) var(--gutter) 2rem; }
+  .foot__top { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1.5rem 3rem; padding-bottom: 1.75rem; border-bottom: 1px solid var(--rule-char); }
+  .foot__brand { display: flex; align-items: center; gap: 1rem; font-weight: 620; font-style: italic; font-size: 1.15rem; font-variation-settings: "wdth" 104; letter-spacing: -0.015em; }
+  .foot__brand img { border-radius: 50%; flex: none; }
+  .foot ul { display: flex; flex-wrap: wrap; gap: 0 0.4rem; margin-inline: -0.6rem; }
+  .foot li a { display: inline-flex; align-items: center; min-height: 2.75rem; padding-inline: 0.6rem; text-underline-offset: 0.25em; text-decoration-color: var(--gold); }
+  .foot__legal { margin-top: 1.25rem; max-width: 62em; font-size: 0.9375rem; font-variation-settings: "wdth" 90; color: var(--on-char-soft); }
+</style>

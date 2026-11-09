@@ -1,0 +1,34 @@
+---
+import Photo from "./Photo.astro";
+import { images } from "../data/images";
+import { brand } from "../data/site";
+---
+<section class="band" data-tone="warm" id="intro" aria-labelledby="intro-title">
+  <div class="wrap">
+    <h2 id="intro-title" class="title intro__title" data-r>Homes and commercial sites in {brand.area}.</h2>
+    <div class="intro__split">
+      <article class="intro__a">
+        <Photo image={images.pendantKitchen} ratio="5 / 4" sizes="(max-width: 860px) 100vw, 56vw" />
+        <h3 class="sub" data-r>In your home</h3>
+        <p class="measure soft" data-r>Spotlights throughout, LED strip under the worktops, matching sockets and switches, and outdoor lights that only come on when they're needed.</p>
+      </article>
+      <article class="intro__b">
+        <Photo image={images.ceiling} ratio="4 / 3" sizes="(max-width: 860px) 100vw, 36vw" />
+        <h3 class="sub" data-r>For commercial sites</h3>
+        <p class="measure soft" data-r>Recent commercial work includes replacing four leak detection panels with one new BMS panel, from the power supply and panel wiring through to labelling and testing.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<style>
+  .intro__title { max-width: 15em; margin-bottom: clamp(2.5rem, 6vw, 5.5rem); }
+  .intro__split { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(2rem, 6vw, 6.5rem); align-items: start; }
+  .intro__b { margin-top: clamp(4rem, 13vw, 13rem); }
+  article { display: grid; gap: 0.75rem; }
+  article .sub { margin-top: 1rem; }
+  @media (max-width: 760px) {
+    .intro__split { grid-template-columns: 1fr; gap: 3.5rem; }
+    .intro__b { margin-top: 0; }
+  }
+</style>

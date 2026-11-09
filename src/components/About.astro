@@ -1,0 +1,23 @@
+---
+import { asset, brand } from "../data/site";
+---
+<section class="band" data-tone="gold" id="about" aria-labelledby="about-title">
+  <span class="node" data-line-node="right" aria-hidden="true"></span>
+  <div class="wrap about">
+    <h2 id="about-title" class="about__title" data-r>Quality workmanship, <em>clean finishes.</em></h2>
+    <div class="about__body">
+      <img src={asset(brand.logo)} alt="JT Electrical logo" width="72" height="72" loading="lazy" data-r />
+      <p class="lede" data-r>JT Electrical is a West Yorkshire electrical business working in homes and on commercial sites. One job is spotlights and a tidy TV cable run, the next is a panel in a basement, and that variety is part of what we enjoy about the trade.</p>
+      <p class="lede" data-r>Not every job is a big one. Sometimes a brighter light at the front of the house is all it takes to make a real difference.</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(2rem, 6vw, 6.5rem); align-items: end; }
+  .about__title { font-size: clamp(2.75rem, 7.2vw, 6.75rem); font-weight: 660; font-variation-settings: "wdth" 104; line-height: 0.99; letter-spacing: -0.035em; text-wrap: balance; }
+  .about__title em { font-style: italic; }
+  .about__body { display: grid; gap: 1.1rem; }
+  .about__body img { border-radius: 50%; }
+  @media (max-width: 860px) { .about { grid-template-columns: 1fr; } }
+</style>

@@ -1,0 +1,12 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { asset } from "../data/site";
+---
+<Layout title="Page not found" description="This page could not be found.">
+  <section class="band" data-tone="warm" style="min-height: 70vh; padding-top: calc(var(--header-h) + var(--section));">
+    <div class="wrap" style="display: grid; gap: 1.25rem; justify-items: start;">
+      <h1 class="title">This page isn't wired in.</h1>
+      <a class="btn" href={asset("/")}>Back to the homepage</a>
+    </div>
+  </section>
+</Layout>

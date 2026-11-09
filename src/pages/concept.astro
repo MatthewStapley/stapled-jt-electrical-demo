@@ -1,0 +1,35 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { images } from "../data/images";
+import { asset, brand, stapled } from "../data/site";
+---
+<Layout title="About this concept" description="How this JT Electrical website concept was made and what it does not claim.">
+  <section class="band" data-tone="warm" style="padding-top: calc(var(--header-h) + var(--section) * 0.7);">
+    <div class="wrap concept">
+      <h1 class="title">About this concept</h1>
+      <p class="lede">This is a website design concept made by <a href={stapled.url}>Stapled.</a> for {brand.name}. The business has not yet reviewed or approved it.</p>
+
+      <h2 class="sub">Where the words come from</h2>
+      <p>The name, location, sectors, line and types of work come from <a href={brand.instagram}>{brand.name}'s public Instagram profile and captions</a>. The page makes no claims about qualifications, registration, insurance, reviews or years of experience.</p>
+
+      <h2 class="sub">Logo and images</h2>
+      <p>The logo is the small version from the business's Instagram profile, used for this concept only. The kitchen is a computer-generated sample visualisation made by Stapled. The photographs are stock samples under the Unsplash License. The line drawings are illustrations made for this concept. None of them show work by {brand.name}.</p>
+      <ul>
+        {Object.values(images).map((img) => <li><a href={img.creditUrl}>Photograph by {img.credit}</a></li>)}
+      </ul>
+
+      <h2 class="sub">The enquiry form</h2>
+      <p>The form is a preview. It doesn't send or save anything. The verified way to reach {brand.name} today is a direct message on Instagram.</p>
+
+      <a class="btn" href={asset("/")}>Back to the concept</a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .concept { display: grid; gap: 1rem; justify-items: start; max-width: 50rem; margin-inline: 0; }
+  .concept .sub { margin-top: 1.25rem; }
+  .concept ul { display: grid; gap: 0.1rem; }
+  .concept .btn { margin-top: 1.5rem; }
+  .concept a:not(.btn) { text-underline-offset: 0.2em; }
+</style>

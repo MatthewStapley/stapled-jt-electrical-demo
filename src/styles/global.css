@@ -1,0 +1,202 @@
+/* JT Electrical. Built from the badge: electric yellow on charcoal, a heavy wide
+   italic, a ring with a tapered sweep, and one angle taken from the JT lettering.
+   Saira carries the identity. Archivo stays for reading. */
+:root {
+  --volt: #ffd60a;
+  --char: #18191b;
+  --char-deep: #111213;
+  --char-up: #26282b;
+  --warm: #f7f3ea;
+  --warm-2: #e8e2d4;
+  --brass: #7a5a00;
+
+  /* Sections not yet revised still read these names. */
+  --gold: var(--volt);
+  --gold-press: #e6c000;
+
+  --ink: var(--char);
+  --ink-soft: #55534c;
+  --on-char: var(--warm);
+  --on-char-soft: #c4bfb3;
+
+  --rule-warm: rgb(24 25 27 / 0.18);
+  --rule-char: rgb(247 243 234 / 0.2);
+
+  /* The lean of the J and T stems in the badge. */
+  --slant: -20deg;
+  --tan: 0.364;
+
+  --gutter: clamp(1.25rem, 6vw, 5.75rem);
+  --section: clamp(5rem, 11vw, 10rem);
+  --bar-h: 1.75rem;
+  --header-h: 5rem;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --font: "Archivo Variable", "Arial Narrow", Arial, sans-serif;
+  --display: "Saira Variable", "Arial Narrow", Arial, sans-serif;
+
+  color-scheme: light;
+}
+@media (max-width: 860px) { :root { --header-h: 4.25rem; } }
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: calc(var(--header-h) + 1rem);
+  background: var(--char);
+  scrollbar-color: #6a675f var(--char-deep);
+}
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+
+body {
+  margin: 0;
+  background: var(--warm);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: 1.0625rem;
+  line-height: 1.55;
+  font-variation-settings: "wdth" 100;
+  -webkit-font-smoothing: antialiased;
+  text-wrap: pretty;
+  overflow-x: clip;
+  caret-color: var(--brass);
+}
+
+img, svg, canvas { display: block; max-width: 100%; }
+img { height: auto; }
+a { color: inherit; }
+button, input, select, textarea { font: inherit; color: inherit; }
+h1, h2, h3, p, ul, ol, dl, dd, figure { margin: 0; padding: 0; }
+ul, ol { list-style: none; }
+main { position: relative; z-index: 0; display: flow-root; }
+
+::selection { background: var(--volt); color: var(--char); }
+:focus-visible { outline: 3px solid var(--brass); outline-offset: 3px; }
+[data-tone="dark"] :focus-visible, .head :focus-visible, .menu :focus-visible, .foot :focus-visible, .bar :focus-visible, .hero :focus-visible { outline-color: var(--volt); }
+[data-tone="gold"] :focus-visible, .on-volt :focus-visible { outline-color: var(--char); }
+
+.skip {
+  position: fixed; left: 1rem; top: -4rem; z-index: 90;
+  padding: 0.7rem 1rem; background: var(--volt); color: var(--char); font-weight: 650;
+}
+.skip:focus { top: 0.6rem; }
+
+/* Sections */
+.band { position: relative; padding-block: var(--section); }
+.band[data-tone="dark"] { background: var(--char); color: var(--on-char); }
+.band[data-tone="warm"] { background: var(--warm); color: var(--ink); }
+.band[data-tone="gold"] { background: var(--volt); color: var(--char); }
+.wrap { position: relative; z-index: 2; max-width: 92rem; margin-inline: auto; padding-inline: var(--gutter); }
+
+/* Type */
+.title {
+  font-size: clamp(2.15rem, 4.9vw, 4.4rem);
+  font-weight: 640;
+  font-variation-settings: "wdth" 106;
+  line-height: 1.03;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+.title em { font-style: italic; font-weight: 620; }
+.sub {
+  font-size: clamp(1.4rem, 2.2vw, 1.9rem);
+  font-weight: 630;
+  font-variation-settings: "wdth" 104;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+.shout {
+  font-family: var(--display);
+  font-style: italic;
+  font-weight: 800;
+  font-variation-settings: "wdth" 125;
+  text-transform: uppercase;
+  line-height: 0.94;
+  letter-spacing: -0.01em;
+}
+.tag {
+  display: inline-flex; align-items: center; gap: 0.7rem;
+  font-family: var(--display); font-style: italic; font-weight: 700;
+  font-variation-settings: "wdth" 110;
+  text-transform: uppercase; letter-spacing: 0.02em; font-size: 1rem; line-height: 1;
+}
+.tag::before { content: ""; width: 2.2rem; height: 0.7rem; background: var(--tag, var(--volt)); transform: skewX(var(--slant)); }
+.lede { font-size: clamp(1.125rem, 1.5vw, 1.3rem); line-height: 1.5; max-width: 34em; }
+.measure { max-width: 36em; }
+.soft { color: var(--ink-soft); }
+[data-tone="dark"] .soft { color: var(--on-char-soft); }
+.small { font-size: 0.9375rem; font-variation-settings: "wdth" 88; }
+.link {
+  display: inline-flex; align-items: center; min-height: 2.75rem;
+  font-weight: 620; text-decoration: none;
+  background: linear-gradient(currentColor, currentColor) 0 calc(100% - 0.55rem) / 100% 1.5px no-repeat;
+  transition: background-size 420ms var(--ease);
+}
+@media (hover: hover) { .link:hover { background-size: 35% 1.5px; } }
+
+/* Buttons take the badge's lean. A skewed layer carries the shape, so the label
+   stays upright and the focus ring follows the angle. */
+.btn {
+  --b: var(--volt);
+  --h: var(--warm);
+  --fg: var(--char);
+  --fg-h: var(--char);
+  --over: 0.64rem;
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  min-height: 3.5rem;
+  padding-inline: 1.9rem;
+  border: 0;
+  background: none;
+  color: var(--fg);
+  font-family: var(--display);
+  font-style: italic;
+  font-weight: 750;
+  font-variation-settings: "wdth" 108;
+  line-height: 1.1;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 160ms var(--ease), color 220ms ease;
+}
+.btn::before {
+  content: "";
+  position: absolute; inset: 0 var(--over); z-index: -1;
+  transform: skewX(var(--slant));
+  background: linear-gradient(90deg, var(--h) 50%, var(--b) 50%) 100% 0 / 201% 100% no-repeat;
+  transition: background-position 460ms var(--ease);
+}
+.btn svg { flex: none; width: 1.3rem; height: 1.3rem; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; transition: transform 460ms var(--ease); }
+.btn:active { transform: translateY(1px); }
+.btn:focus-visible { outline: 0; }
+.btn:focus-visible::before { outline: 3px solid var(--ring, var(--warm)); outline-offset: 3px; }
+@media (hover: hover) {
+  .btn:hover { color: var(--fg-h); }
+  .btn:hover::before { background-position: 0 0; }
+  .btn:hover .btn__go { transform: translateX(4px); }
+}
+[data-tone="warm"] .btn, .btn--panel { --h: var(--char); --fg-h: var(--volt); --ring: var(--char); }
+.on-volt .btn { --b: var(--char); --h: var(--warm); --fg: var(--volt); --fg-h: var(--char); --ring: var(--char); }
+.btn--line { --b: transparent; --h: var(--volt); --fg: currentColor; --fg-h: var(--char); color: inherit; }
+.btn--line::before { box-shadow: inset 0 0 0 2px currentColor; }
+@media (hover: hover) { .btn--line:hover::before { box-shadow: inset 0 0 0 2px var(--volt); } }
+.btn[disabled] { cursor: progress; opacity: 0.6; }
+
+/* Restrained scroll reveals. Only armed once the script has run. */
+html.reveal-armed [data-r] { opacity: 0; transform: translateY(1.5rem); transition: opacity 900ms var(--ease) var(--d, 0ms), transform 900ms var(--ease) var(--d, 0ms); }
+/* A cover wipes away. Clipping the image itself would stop lazy loading from firing. */
+html.reveal-armed [data-r="clip"] { opacity: 1; transform: none; }
+html.reveal-armed [data-r="clip"]::after { content: ""; position: absolute; inset: 0; z-index: 3; background: var(--warm); transform-origin: bottom; transition: transform 1300ms var(--ease) var(--d, 0ms); }
+html.reveal-armed [data-r].in { opacity: 1; transform: none; }
+html.reveal-armed [data-r="clip"].in::after { transform: scaleY(0); }
+html.reveal-armed [data-draw] .d { stroke-dashoffset: 1; }
+html.reveal-armed [data-draw].in .d { stroke-dashoffset: 0; }
+.d { stroke-dasharray: 1; stroke-dashoffset: 0; transition: stroke-dashoffset 1500ms cubic-bezier(0.6, 0, 0.1, 1) var(--d, 120ms); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 1ms !important; animation: none !important; }
+}

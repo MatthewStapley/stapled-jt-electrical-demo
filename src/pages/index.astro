@@ -1,0 +1,25 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/Hero.astro";
+import Intro from "../components/Intro.astro";
+import Services from "../components/Services.astro";
+import Finishes from "../components/Finishes.astro";
+import About from "../components/About.astro";
+import Enquiry from "../components/Enquiry.astro";
+import { asset } from "../data/site";
+---
+<Layout
+  title="Domestic and commercial electrical work in West Yorkshire"
+  description="A website concept for JT Electrical: domestic and commercial electrical work in West Yorkshire. Precision & Quality. Every Detail Matters."
+  preload={[
+    { href: asset("/renders/kitchen-wide-lit.webp"), media: "(min-width: 861px)" },
+    { href: asset("/renders/kitchen-tall-lit.webp"), media: "(max-width: 860px)" },
+  ]}
+>
+  <Hero />
+  <Intro />
+  <Services />
+  <Finishes />
+  <About />
+  <Enquiry />
+</Layout>
